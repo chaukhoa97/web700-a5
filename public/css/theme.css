@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@400;600&family=Roboto:wght@300;400&family=Source+Sans+Pro:wght@400;600&display=swap');
+
+/* Background gradient */
+body,
+html {
+  background: linear-gradient(135deg, #e0c3fc, #8ec5fc);
+  min-height: 100vh;
+  overflow: auto;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* Navigation styling */
+.bg-light {
+  background: linear-gradient(to right, #a18cd1, #c2e9fb) !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-light .navbar-brand {
+  color: #4a148c;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link {
+  color: #6a1b9a !important;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+}
+
+.active .nav-link,
+.nav-link:hover {
+  color: #ff5722 !important;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #4a148c;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Table styling */
+.table {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+.table tr:nth-child(odd) td {
+  background: linear-gradient(
+    to right,
+    rgba(224, 195, 252, 0.3),
+    rgba(142, 197, 252, 0.3)
+  );
+}
+
+/* Button styling */
+.btn-primary {
+  background: linear-gradient(45deg, #a18cd1, #c2e9fb);
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  color: #4a148c;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(45deg, #c2e9fb, #a18cd1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Links */
+a {
+  color: #9575cd;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+a:hover {
+  color: #7e57c2;
+  text-decoration: none;
+}
+
+/* Form elements */
+legend {
+  color: #4a148c;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+}
+
+.form-control {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
