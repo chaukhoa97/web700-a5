@@ -5,7 +5,7 @@
  * (including 3rd party web sites) or distributed to other students.
  *
  * Name: Dinh Khoa Chau Student ID: 174120238 Date: 2025-03-20
- * Online (Vercel) Link: https://web700-app-steel.vercel.app/
+ * Online (Vercel) Link: https://web700-a5.vercel.app/
  ********************************************************************************/
 
 const express = require('express')
@@ -19,7 +19,7 @@ const HTTP_PORT = process.env.PORT || 8080
 app.use(express.urlencoded({ extended: true }))
 
 // Set up static folder
-app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, 'public')))
 
 // Set up EJS with layouts
 app.use(expressLayouts)
