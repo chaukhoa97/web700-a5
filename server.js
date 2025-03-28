@@ -62,41 +62,30 @@ app.get('/htmlDemo', (req, res) => {
 })
 
 app.get('/students', (req, res) => {
-  // If there's a course query, filter students
-  if (req.query.course) {
-    collegeData
-      .getStudentsByCourse(req.query.course)
-      .then((data) => {
-        res.render('students', { students: data })
-      })
-      .catch(() => {
-        // Always include an empty students array when there are no results
-        res.render('students', {
-          students: [],
-          message: 'No students found for this course',
-        })
-      })
-  } else {
-    collegeData
-      .getAllStudents()
-      .then((data) => {
-        res.render('students', { students: data })
-      })
-      .catch(() => {
-        // Always include an empty students array
-        res.render('students', {
-          students: [],
-          message: 'No student records found',
-        })
-      })
-  }
+  collegeData
+    .getAllStudents()
+    .then((data) => {
+      res.render('students', { students: data })
+    })
+    .catch((err) => {
+      res.render('students', { message: 'no results' })
+    })
 })
 
 app.get('/courses', (req, res) => {
   collegeData
     .getCourses()
-    .then((courses) => res.render('courses', { courses: courses }))
-    .catch(() => res.render('courses', { message: 'no results' }))
+    .then((data) => {
+      if (data.length > 0) {
+        res.render('courses', { courses: data })
+      } else {
+        // Pass an empty array rather than no courses variable
+        res.render('courses', { courses: [], message: 'no results' })
+      }
+    })
+    .catch((err) => {
+      res.render('courses', { courses: [], message: 'no results' })
+    })
 })
 
 app.get('/course/:id', (req, res) => {
@@ -114,7 +103,14 @@ app.get('/student/:num', (req, res) => {
 })
 
 app.get('/students/add', (req, res) => {
-  res.render('addStudent')
+  collegeData
+    .getCourses()
+    .then((data) => {
+      res.render('addStudent', { courses: data })
+    })
+    .catch(() => {
+      res.render('addStudent', { courses: [] })
+    })
 })
 
 app.post('/students/add', (req, res) => {
@@ -129,6 +125,17 @@ app.post('/students/add', (req, res) => {
     })
 })
 
+app.get('/student/delete/:studentNum', (req, res) => {
+  collegeData
+    .deleteStudentByNum(req.params.studentNum)
+    .then(() => {
+      res.redirect('/students')
+    })
+    .catch((err) => {
+      res.status(500).send('Unable to Remove Student / Student not found')
+    })
+})
+
 app.post('/student/update', (req, res) => {
   collegeData
     .updateStudent(req.body)
@@ -138,6 +145,21 @@ app.post('/student/update', (req, res) => {
     .catch((error) => {
       console.error(error)
       res.status(500).send('Error updating student')
+    })
+})
+
+app.get('/courses/add', (req, res) => {
+  res.render('addCourse')
+})
+
+app.post('/courses/add', (req, res) => {
+  collegeData
+    .addCourse(req.body)
+    .then(() => {
+      res.redirect('/courses')
+    })
+    .catch((err) => {
+      res.status(500).send('Unable to Add Course')
     })
 })
 
