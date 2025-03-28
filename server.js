@@ -95,6 +95,17 @@ app.get('/course/:id', (req, res) => {
     .catch(() => res.render('course', { message: 'no results' }))
 })
 
+app.get('/course/delete/:id', (req, res) => {
+  collegeData
+    .deleteCourseById(req.params.id)
+    .then(() => {
+      res.redirect('/courses')
+    })
+    .catch((err) => {
+      res.status(500).send('Unable to Remove Course / Course not found')
+    })
+})
+
 app.get('/student/:num', (req, res) => {
   collegeData
     .getStudentByNum(req.params.num)
