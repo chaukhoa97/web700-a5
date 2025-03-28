@@ -3,6 +3,7 @@ var sequelize = new Sequelize('neondb', 'neondb_owner', 'npg_Y3j5spdQUFCa', {
   host: 'ep-red-cake-a4yf9wqv-pooler.us-east-1.aws.neon.tech',
   dialect: 'postgres',
   port: 5432,
+  dialectModule: require('pg'),
   dialectOptions: {
     ssl: { rejectUnauthorized: false },
   },
